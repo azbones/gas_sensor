@@ -1,0 +1,13 @@
+{
+  "module_id": "tuneni:gas-test",
+  "visibility": "",
+  "url": "",
+  "description": "",
+  "models": [
+    {
+      "api": "",
+      "model": ""
+    }
+  ],
+  "entrypoint": ""
+}
