@@ -1,2 +1,4 @@
 viam-sdk
 enviroplus
+RPi.GPIO
+smbus
