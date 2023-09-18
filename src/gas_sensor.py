@@ -18,7 +18,7 @@ class MySensor(Sensor):
         sensor = cls(config.name)
         return sensor
 
-    async def get_readings(self, **kwargs):
+    async def get_readings(self, **kwargs)-> Mapping[str, Any]:
         nh3_readings = []
         ox_readings = []
         red_readings = []
