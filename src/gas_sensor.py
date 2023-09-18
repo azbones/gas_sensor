@@ -8,24 +8,20 @@ from viam.resource.types import Model, ModelFamily
 
 from enviroplus import gas
 
-
 class MySensor(Sensor):
     # Subclass the Viam Arm component and implement the required functions
-    MODEL: ClassVar[Model] = Model(ModelFamily("tuneni", "gas_sensor"), "linux")
+    MODEL: ClassVar[Model] = Model(ModelFamily("viam", "gas_sensor"), "linux")
 
     @classmethod
     def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
         sensor = cls(config.name)
         return sensor
 
-    async def get_readings(self, **kwargs)-> Mapping[str, Any]:
-        nh3_readings = []
-        ox_readings = []
-        red_readings = []
+    async def get_readings(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, Any]:
 
-        nh3_readings.append(gas.read_nh3())
-        ox_readings.append(gas.read_oxidising())
-        red_readings.append(gas.read_reducing())
+        nh3_readings = gas.read_nh3()
+        ox_readings = gas.read_oxidising()
+        red_readings = gas.read_reducing()
 
         data = {'nh3': nh3_readings, 'ox': ox_readings, 'red': red_readings}
 
@@ -33,11 +29,9 @@ class MySensor(Sensor):
 
 
 async def main():
-    gas = MySensor(name="gas")
+    gas=MySensor(name="gas")
     signal = await gas.get_readings()
     print(signal)
 
-
 if __name__ == '__main__':
     asyncio.run(main())
-
