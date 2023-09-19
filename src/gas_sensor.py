@@ -10,7 +10,7 @@ from enviroplus import gas
 
 class MySensor(Sensor):
     # Subclass the Viam Arm component and implement the required functions
-    MODEL: ClassVar[Model] = Model(ModelFamily("tuneni", "gas_sensor"), "linux")
+    MODEL: ClassVar[Model] = Model(ModelFamily("tuneni", "sensor"), "gas")
 
     @classmethod
     def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
